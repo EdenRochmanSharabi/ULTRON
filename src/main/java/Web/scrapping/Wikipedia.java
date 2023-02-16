@@ -7,11 +7,11 @@ import java.net.URL;
 import org.json.JSONObject;
 import java.io.IOException;
 
-public class Search {
+public class Wikipedia {
     public static void main(String[] args) throws IOException {
-        Search run = new Search("israel", "en");
+        Wikipedia run = new Wikipedia("israel", "en");
     }
-    public Search(String query, String Lang) throws IOException{
+    public Wikipedia(String query, String Lang) throws IOException{
         String url = "https://"+ Lang +".wikipedia.org/api/rest_v1/page/summary/" + query.replaceAll(" ", "_");
         URL obj = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();

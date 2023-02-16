@@ -9,8 +9,8 @@ import java.io.IOException;
 public class Weather {
     public Weather(String choose) throws IOException {
         String url = "https://weather.com/weather/today/l/78c89788573709eebe79ab6397599d86111a202ea82c7646acf5b00e72cc77ae";
-        Document doc = Jsoup.connect(url).get();
-        Elements getData = doc.select("span.CurrentConditions--tempValue--MHmYY[data-testid=TemperatureValue]");
+        Document web = Jsoup.connect(url).get();
+        Elements getData = web.select("span.CurrentConditions--tempValue--MHmYY[data-testid=TemperatureValue]");
         String tempFahrenheit = getData.text();
         String finalFahrenheit = tempFahrenheit.substring(0, tempFahrenheit.length() - 1);
         float tempCelsius = (Float.parseFloat(finalFahrenheit) - 32) * 5/9;
