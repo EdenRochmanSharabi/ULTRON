@@ -3,17 +3,19 @@ package SymSpell;
 import Damerau_Levenshtein_Distance.DamerauLevenshtein;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SymSpell {
     public static void main(String[] args) throws IOException {
         SymSpell dl = new SymSpell();
-        String word = "wrd";
-        List<String> similarWords = dl.getSimilarWordsDistance(word, 3, 5);
-        System.out.println("Words within 3 Damerau-Levenshtein distance of " + word + ": " + similarWords);
+        String word = "imagine";
+        if (dl.getSimilarWordsDistance(word, 3, 5)!=null){
+            List<String> similarWords = dl.getSimilarWordsDistance(word, 3, 5);
+            System.out.println("Words within 3 Damerau-Levenshtein distance of " + word + ": " + similarWords);
+        } else {
+            System.out.println("The word is correct");
+        }
+
     }
     DictionaryFrecuency dict;
     public SymSpell() throws IOException { this.dict = new DictionaryFrecuency();}
@@ -24,6 +26,9 @@ public class SymSpell {
         DamerauLevenshtein dl = new DamerauLevenshtein();
 
         for (String candidate : dictionary.keySet()){
+            if (Objects.equals(candidate, word)){
+                return null;
+            }
             int distance = dl.getDistance(word, candidate);
             if (distance <= maximumDistance && isSimilar(word, candidate)){
                 closeWords.put(candidate, dictionary.get(candidate));

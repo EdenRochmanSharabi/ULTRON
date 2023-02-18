@@ -74,9 +74,7 @@ public class SplitData {
     public List<String> getCorrectWords(){
         return correctWords;
     }
-//    public List<String> getIncorrectWords(){
-//        return incorrectWords;
-//    }
+
     public String[] getIncorrectWords(int index){
         String word = incorrectWords.get(index);
         int dots = word.indexOf(":");
