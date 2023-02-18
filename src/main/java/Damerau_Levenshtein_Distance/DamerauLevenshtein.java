@@ -11,6 +11,8 @@ public class DamerauLevenshtein {
         List<String> similarWords = dl.getSimilarWordsDistance(word, 1);
         System.out.println("Words within 3 Damerau-Levenshtein distance of " + word + ": " + similarWords);
     }
+
+
     Dictionary dict;
     public DamerauLevenshtein(){
         this.dict = new Dictionary();
@@ -48,34 +50,3 @@ public class DamerauLevenshtein {
         return distance[a.length()][b.length()];
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

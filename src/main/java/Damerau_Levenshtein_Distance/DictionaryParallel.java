@@ -14,7 +14,10 @@ public class DictionaryParallel {
     private List<String> words;
 
     public DictionaryParallel() {
-        String filePath = "src/main/java/Damerau_Levenshtein_Distance/words_alpha.txt";
+//        String filePath = "src/main/java/Damerau_Levenshtein_Distance/list_dict/words_alpha.txt";
+//        String filePath = "src/main/java/Damerau_Levenshtein_Distance/list_dict/corncob_lowercase.txt";
+//        String filePath = "src/main/java/Damerau_Levenshtein_Distance/list_dict/most_common_words.txt";
+        String filePath = "src/main/java/All_List_Words/list_dict/words_alpha.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             this.words = br.lines().parallel().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         } catch (IOException e) {

@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
+    public static void main(String[] args) {
+        Dictionary run = new Dictionary();
+        System.out.println(run.getWords());
+    }
     private List<String> words;
 
     public Dictionary(){
         words = new ArrayList<>();
-        String filePath = "src/main/java/Damerau_Levenshtein_Distance/words_alpha.txt";
+        String filePath = "src/main/java/All_List_Words/list_dict/words_alpha.txt";
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line;
