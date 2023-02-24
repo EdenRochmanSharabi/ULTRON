@@ -1,10 +1,9 @@
-package Deepspell;
+package Deepspell.Tokenization;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class TrainingData {
@@ -17,20 +16,32 @@ public class TrainingData {
                 "src/main/java/Deepspell/Files/wikipedia.txt"
         );
 
-        System.out.println(run.getWords());
-        System.out.println(run.contains("|Nevada:: nevade |"));
+        System.out.println("Correct: " + run.getCorrectWords().size());
+        System.out.println("Incorrect: " + run.getIncorrectWordsList().size());
+        System.out.println("Correct word list: "+run.correctWordCount);
+        System.out.println("Incorrect word list: "+run.inCorrectWordCount);
+
     }
     private List<String> words;
+    private List<String> correctWords;
+    private List<String> incorrectWordsList;
+    private int correctWordCount;
+    private int inCorrectWordCount;
 
     public TrainingData(String... fileNames) {
         Preprocessor preprocessor = new Preprocessor();
         words = new ArrayList<>();
 
+        correctWords = new ArrayList<>();
+        incorrectWordsList = new ArrayList<>();
+
+
         for (String fileName : fileNames) {
             try {
                 BufferedReader br = new BufferedReader(new FileReader(fileName));
                 String line;
-
+                correctWordCount = 0;
+                inCorrectWordCount = 0;
                 while ((line = br.readLine()) != null) {
                     String[] wordsInLine = line.split("\\s+");
 
@@ -42,8 +53,12 @@ public class TrainingData {
                         if (!word.isEmpty()) {
                             if (correctWord.isEmpty()) {
                                 correctWord = word;
+                                correctWords.add(word);
+                                correctWordCount++;
                             } else {
                                 incorrectWords.add(word);
+                                incorrectWordsList.add(word);
+                                inCorrectWordCount++;
                             }
                         }
                     }
@@ -70,5 +85,13 @@ public class TrainingData {
 
     public List<String> getWords(){
         return words;
+    }
+
+    public List<String> getCorrectWords() {
+        return correctWords;
+    }
+
+    public List<String> getIncorrectWordsList() {
+        return incorrectWordsList;
     }
 }
